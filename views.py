@@ -13,10 +13,7 @@ def index():
 
 @app.route('/desserts')
 def desserts():
-
-    desserts = Dessert.query.all()
-    resp = [dessert_schema.dump(d).data for d in desserts]
-    return json.dumps(resp)
+    return json.dumps({"dessert":[dessert_schema.dump(d).data for d in Dessert.query.all()]})
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
